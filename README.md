@@ -1,2 +1,2 @@
 # soap-service-springws
-SOAP service implemented in spring WS
+SOAP service and client implemented in Spring WS

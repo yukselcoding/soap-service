@@ -1,0 +1,104 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="https://www.yuksel.com/services"
+           targetNamespace="https://www.yuksel.com/services" elementFormDefault="qualified">
+
+    <!-- START - GetPerson Operation WSDL Definitions - START  -->
+
+    <!-- Person model for the service   -->
+    <xs:complexType name="personnel">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="FirstName" type="xs:string"/>
+            <xs:element minOccurs="0" name="LastName" type="xs:string"/>
+            <xs:element minOccurs="0" name="Identifier" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- RequestBody for updatePerson & createPerson request   -->
+    <xs:complexType name="PersonnelRequestInfo">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="personnel" type="tns:personnel"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- RequestBody for getPerson request   -->
+    <xs:complexType name="getDeletePersonnelRequestInfo">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="whatToFilterWith" type="xs:string"/>
+            <xs:element minOccurs="0" name="FilterWith" type="tns:filterWith"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Response for create & update person procedures   -->
+    <xs:element name="PersonnelResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <!-- START - DeletePerson Operation WSDL Definitions - START  -->
+    <!-- Request  & Response   -->
+    <xs:element name="deletePersonnelRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="deletePersonnel" type="tns:getDeletePersonnelRequestInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- END - DeletePerson Operation WSDL Definitions - END  -->
+
+
+    <!-- START - GetPerson Operation WSDL Definitions - START  -->
+    <!-- Request  & Response   -->
+    <xs:element name="getPersonnelRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="getPersonnel" type="tns:getDeletePersonnelRequestInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getPersonnelResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element  name="people" type="tns:personnel" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- END - GetPerson Operation WSDL Definitions - END  -->
+
+    <!-- START - UpdatePerson Operation WSDL Definitions - START  -->
+    <!-- Request  & Response   -->
+    <xs:element name="updatePersonnelRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="updatePersonnel" type="tns:PersonnelRequestInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- END - UpdatePerson Operation WSDL Definitions - END  -->
+
+
+    <!-- START - CreatePerson Operation WSDL Definitions - START  -->
+    <!-- Request  & Response   -->
+    <xs:element name="createPersonnelRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="createPersonnel" type="tns:PersonnelRequestInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- END - CreatePerson Operation WSDL Definitions - END  -->
+
+
+    <!-- Enum Data type to indicate what to filter the records with    -->
+    <xs:simpleType name="filterWith">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Identifier"/>
+            <xs:enumeration value="FirstName"/>
+            <xs:enumeration value="LastName"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

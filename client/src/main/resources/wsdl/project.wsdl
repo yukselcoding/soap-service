@@ -1,0 +1,188 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="https://www.yuksel.com/services" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="https://www.yuksel.com/services" targetNamespace="https://www.yuksel.com/services">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="https://www.yuksel.com/services">
+            <!--
+             START - GetPerson Operation WSDL Definitions - START
+            -->
+            <!--  Person model for the service    -->
+            <xs:complexType name="personnel">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="FirstName" type="xs:string"/>
+                    <xs:element minOccurs="0" name="LastName" type="xs:string"/>
+                    <xs:element minOccurs="0" name="Identifier" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <!--
+             RequestBody for updatePerson & createPerson request
+            -->
+            <xs:complexType name="PersonnelRequestInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="personnel" type="tns:personnel"/>
+                </xs:sequence>
+            </xs:complexType>
+            <!--  RequestBody for getPerson request    -->
+            <xs:complexType name="getDeletePersonnelRequestInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="whatToFilterWith" type="xs:string"/>
+                    <xs:element minOccurs="0" name="FilterWith" type="tns:filterWith"/>
+                </xs:sequence>
+            </xs:complexType>
+            <!--  Response for create & update person procedures    -->
+            <xs:element name="PersonnelResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="message" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <!--
+             START - DeletePerson Operation WSDL Definitions - START
+            -->
+            <!--  Request  & Response    -->
+            <xs:element name="deletePersonnelRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="deletePersonnel" type="tns:getDeletePersonnelRequestInfo"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <!--
+             END - DeletePerson Operation WSDL Definitions - END
+            -->
+            <!--
+             START - GetPerson Operation WSDL Definitions - START
+            -->
+            <!--  Request  & Response    -->
+            <xs:element name="getPersonnelRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="getPersonnel" type="tns:getDeletePersonnelRequestInfo"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getPersonnelResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="people" nillable="true" type="tns:personnel"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <!--  END - GetPerson Operation WSDL Definitions - END   -->
+            <!--
+             START - UpdatePerson Operation WSDL Definitions - START
+            -->
+            <!--  Request  & Response    -->
+            <xs:element name="updatePersonnelRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="updatePersonnel" type="tns:PersonnelRequestInfo"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <!--
+             END - UpdatePerson Operation WSDL Definitions - END
+            -->
+            <!--
+             START - CreatePerson Operation WSDL Definitions - START
+            -->
+            <!--  Request  & Response    -->
+            <xs:element name="createPersonnelRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="createPersonnel" type="tns:PersonnelRequestInfo"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <!--
+             END - CreatePerson Operation WSDL Definitions - END
+            -->
+            <!--
+             Enum Data type to indicate what to filter the records with
+            -->
+            <xs:simpleType name="filterWith">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Identifier"/>
+                    <xs:enumeration value="FirstName"/>
+                    <xs:enumeration value="LastName"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="deletePersonnelRequest">
+        <wsdl:part element="tns:deletePersonnelRequest" name="deletePersonnelRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getPersonnelResponse">
+        <wsdl:part element="tns:getPersonnelResponse" name="getPersonnelResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="createPersonnelRequest">
+        <wsdl:part element="tns:createPersonnelRequest" name="createPersonnelRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getPersonnelRequest">
+        <wsdl:part element="tns:getPersonnelRequest" name="getPersonnelRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="PersonnelResponse">
+        <wsdl:part element="tns:PersonnelResponse" name="PersonnelResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="updatePersonnelRequest">
+        <wsdl:part element="tns:updatePersonnelRequest" name="updatePersonnelRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="personServicePort">
+        <wsdl:operation name="deletePersonnel">
+            <wsdl:input message="tns:deletePersonnelRequest" name="deletePersonnelRequest"> </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getPersonnel">
+            <wsdl:input message="tns:getPersonnelRequest" name="getPersonnelRequest"> </wsdl:input>
+            <wsdl:output message="tns:getPersonnelResponse" name="getPersonnelResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createPersonnel">
+            <wsdl:input message="tns:createPersonnelRequest" name="createPersonnelRequest"> </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="Personnel">
+            <wsdl:output message="tns:PersonnelResponse" name="PersonnelResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updatePersonnel">
+            <wsdl:input message="tns:updatePersonnelRequest" name="updatePersonnelRequest"> </wsdl:input>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="personServicePortSoap11" type="tns:personServicePort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="deletePersonnel">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="deletePersonnelRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getPersonnel">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getPersonnelRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getPersonnelResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createPersonnel">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="createPersonnelRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="Personnel">
+            <soap:operation soapAction=""/>
+            <wsdl:output name="PersonnelResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updatePersonnel">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="updatePersonnelRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="personServicePortService">
+        <wsdl:port binding="tns:personServicePortSoap11" name="personServicePortSoap11">
+            <soap:address location="http://localhost:8080/person"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,8 +1,8 @@
-package soapws.repository;
+package soapwsservice.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import soapws.entity.Person;
+import soapwsservice.entity.Person;
 
 import java.util.List;
 

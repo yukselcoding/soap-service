@@ -1,4 +1,4 @@
-package soapws.config;
+package soapwsservice.config;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;

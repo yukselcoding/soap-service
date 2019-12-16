@@ -1,10 +1,10 @@
-package soapws.service;
+package soapwsservice.service;
 
 import https.www_yuksel_com.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import soapws.entity.Person;
-import soapws.repository.PersonRepository;
+import soapwsservice.entity.Person;
+import soapwsservice.repository.PersonRepository;
 
 import java.util.ArrayList;
 import java.util.List;

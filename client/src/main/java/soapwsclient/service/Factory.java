@@ -1,4 +1,4 @@
 package soapwsclient.service;
 
-public class PersonnelFactory {
+public class Factory {
 }
